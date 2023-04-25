@@ -1,0 +1,26 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '1.6.20'
+    id 'application'
+    id "com.github.johnrengelman.shadow" version "7.0.0"
+}
+
+group = 'com.windscribe'
+version = '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = '1.8'
+}
+
+application {
+    mainClassName = 'MainKt'
+}
+
+shadowJar {
+    archiveBaseName.set('xlf')
+    archiveClassifier.set('')
+    archiveVersion.set('')
+}

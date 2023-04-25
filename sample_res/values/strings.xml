@@ -1,0 +1,5 @@
+<resources>
+    <string name="sign_out">Sign Out</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+</resources>

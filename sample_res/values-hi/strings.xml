@@ -1,0 +1,5 @@
+﻿<resources>
+    <string name="sign_out">साइन आउट </string>
+    <string name="username">नाम</string>
+    <string name="password">पासवर्ड</string>
+</resources>
