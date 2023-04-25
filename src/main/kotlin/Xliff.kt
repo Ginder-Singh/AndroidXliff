@@ -12,10 +12,11 @@ data class Xliff(
             val sb = StringBuilder()
             sb.append("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n")
             sb.append("<xliff xmlns=\"urn:oasis:names:tc:xliff:document:$version\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" version=\"$version\" xsi:schemaLocation=\"urn:oasis:names:tc:xliff:document:$version http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-$version-strict.xsd\">\n")
+            val firstFile = files[0]
+            val uuid = UUID.randomUUID()
+            sb.append(" <file original=\"$uuid\" datatype=\"plaintext\" source-language=\"${firstFile.sourceLanguage}\" target-language=\"${firstFile.targetLanguage}\">\n")
+            sb.append("  <body>\n")
             for (file in files) {
-                val uuid = UUID.randomUUID()
-                sb.append(" <file original=\"$uuid\" datatype=\"plaintext\" source-language=\"${file.sourceLanguage}\" target-language=\"${file.targetLanguage}\">\n")
-                sb.append("  <body>\n")
                 for (unit in file.body?.units!!) {
                     sb.append("  <trans-unit id=\"${unit.id}\" xml:space=\"preserve\">\n")
                     sb.append("    <source>${unit.source}</source>\n")
@@ -23,9 +24,9 @@ data class Xliff(
                     sb.append("    <target>${unit.target}</target>\n")
                     sb.append("  </trans-unit>\n")
                 }
-                sb.append("  </body>\n")
-                sb.append(" </file>\n")
             }
+            sb.append("  </body>\n")
+            sb.append(" </file>\n")
             sb.append("</xliff>")
             return sb.toString()
         }
